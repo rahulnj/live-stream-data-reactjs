@@ -12,26 +12,18 @@ const App = () => {
           <Signin />
         }>
         </Route >
-      </Routes>
-      <Routes>
         <Route path='/signup' element={
           <Signup />
         }>
         </Route >
-      </Routes>
-      <Routes>
         <Route path='/' element={
           <HomeScreen />
         }>
         </Route >
-      </Routes>
-      <Routes>
         <Route path='/live' element={
           <LiveStreamScreen />
         }>
         </Route >
-      </Routes>
-      <Routes>
         <Route path='*' element={
           <PageNotFound />
         }>
