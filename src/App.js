@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom"
 import { Signin, Signup } from "./components";
-import { HomeScreen, LiveStreamScreen } from "./screens";
+import { HomeScreen, LiveStreamScreen, PageNotFound } from "./screens";
 
 
 
@@ -28,6 +28,12 @@ const App = () => {
       <Routes>
         <Route path='/live' element={
           <LiveStreamScreen />
+        }>
+        </Route >
+      </Routes>
+      <Routes>
+        <Route path='*' element={
+          <PageNotFound />
         }>
         </Route >
       </Routes>
