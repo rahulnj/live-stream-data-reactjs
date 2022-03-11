@@ -92,3 +92,14 @@ input, button{
   form .form-inner span:hover{
     text-decoration: underline;
   }
+  textarea {
+    height: 45px;
+    width:75%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #d1d5db;
+    padding-left: 15px;
+    font-size: 14px;
+    transition: 0.4s;
+    resize: none !important;
+}
