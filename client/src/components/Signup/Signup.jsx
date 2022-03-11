@@ -1,13 +1,27 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const Signup = () => {
     const navigate = useNavigate()
-    const [details, setDetails] = useState({ name: "", email: "", password: "" })
+    const [details, setDetails] = useState({ email: "", password: "" })
     const [err, setErr] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+        try {
+            const res = await axios.post('http://localhost:5000/api/users/signup', details)
+            if (res.status === 200) {
+                navigate('/')
+                localStorage.setItem('user', JSON.stringify(res.data))
+            } else {
+                setErr('Something went wrong')
+            }
+        } catch (err) {
+            setErr(err.response.data.message)
+        }
+    
+
     }
 
     return (
@@ -15,10 +29,6 @@ const Signup = () => {
             <div className='form-container'>
                 <div className="form-inner">
                     <h2>Register</h2>
-                    <div className="form-group">
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" name="name" id="name" onChange={e => setDetails({ ...details, name: e.target.value })} value={details.name} />
-                    </div>
                     <div className="form-group">
                         <label htmlFor="email">Email:</label>
                         <input type="email" name="email" id="email" onChange={e => setDetails({ ...details, email: e.target.value })} value={details.email} />

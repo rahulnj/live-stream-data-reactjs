@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import './Signin.css'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -9,8 +10,19 @@ const Signin = () => {
     const [admin, setAdmin] = useState('')
     const [err, setErr] = useState('')
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault()
+        try {
+            const res = await axios.post('http://localhost:5000/api/users/signin', details)
+            if (res.status === 200) {
+                navigate('/')
+                localStorage.setItem('user', JSON.stringify(res.data))
+            } else {
+                setErr('Something went wrong')
+            }
+        } catch (err) {
+            setErr(err.response.data.message)
+        }
     }
 
 
